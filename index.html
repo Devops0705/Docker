@@ -1,202 +1,826 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShopKart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>GlobeGo | Premium Bus Travel Booking</title>
+    <!-- Google Fonts & Simple Icons (Font Awesome CDN) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f1f3f6;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #eef2f9 0%, #d9e2ef 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
 
-/* Navbar */
-.navbar {
-    background: #2874f0;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-}
+        /* decorative abstract elements */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(110,87,224,0.12) 0%, rgba(110,87,224,0) 70%);
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+            z-index: 0;
+        }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-}
+        body::after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, rgba(0,212,255,0) 70%);
+            bottom: -80px;
+            right: -80px;
+            border-radius: 50%;
+            z-index: 0;
+        }
 
-.search-box {
-    flex: 1;
-    margin: 0 20px;
-}
+        .booking-container {
+            max-width: 1350px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(18px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
 
-.search-box input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: none;
-}
+        /* header style */
+        .hero-header {
+            background: linear-gradient(105deg, #1e2b3c 0%, #0f212f 100%);
+            padding: 1.6rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
 
-.nav-links a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-}
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-/* Categories */
-.categories {
-    display: flex;
-    justify-content: space-around;
-    background: white;
-    padding: 10px;
-}
+        .logo-icon {
+            background: #ffb347;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 28px;
+            font-size: 24px;
+            color: #1e2b3c;
+            box-shadow: 0 8px 14px -6px rgba(0,0,0,0.2);
+        }
 
-.categories div {
-    text-align: center;
-    cursor: pointer;
-    font-size: 14px;
-}
+        .logo-text h1 {
+            color: white;
+            font-size: 1.6rem;
+            letter-spacing: -0.3px;
+            font-weight: 700;
+        }
 
-/* Banner */
-.banner {
-    width: 100%;
-    height: 250px;
-    background: url('https://via.placeholder.com/1200x250') no-repeat center/cover;
-    margin-bottom: 20px;
-}
+        .logo-text span {
+            font-size: 0.75rem;
+            color: #ffb347;
+            font-weight: 500;
+        }
 
-/* Products */
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    padding: 20px;
-}
+        .support-badge {
+            background: rgba(255,255,255,0.12);
+            border-radius: 60px;
+            padding: 0.5rem 1.2rem;
+            color: #f0f3fa;
+            font-size: 0.85rem;
+            backdrop-filter: blur(4px);
+            font-weight: 500;
+        }
 
-.product {
-    background: white;
-    padding: 15px;
-    border-radius: 6px;
-    transition: 0.2s;
-}
+        .support-badge i {
+            margin-right: 8px;
+            color: #ffb347;
+        }
 
-.product:hover {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transform: translateY(-5px);
-}
+        /* main booking card */
+        .booking-main {
+            padding: 2rem 2rem 2rem 2rem;
+        }
 
-.product img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-}
+        .form-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
 
-.product h4 {
-    margin: 10px 0;
-}
+        .trip-form {
+            flex: 2;
+            min-width: 260px;
+        }
 
-.price {
-    color: green;
-    font-weight: bold;
-}
+        .trip-summary {
+            flex: 1.2;
+            min-width: 260px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 2rem;
+            padding: 1.4rem 1.6rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255,255,255,0.7);
+        }
 
-button {
-    background: #fb641b;
-    border: none;
-    padding: 8px;
-    color: white;
-    width: 100%;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #102b3a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.2px;
+        }
 
-button:hover {
-    background: #e55b16;
-}
+        .section-title i {
+            color: #ff914d;
+            font-size: 1.25rem;
+        }
 
-/* Footer */
-footer {
-    background: #172337;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-}
-</style>
+        .input-group {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
+        .input-group label {
+            font-weight: 600;
+            color: #1e3a4b;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+
+        .input-field {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 60px;
+            padding: 0 1rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .input-field i {
+            color: #9aaebf;
+            font-size: 1.1rem;
+            width: 28px;
+        }
+
+        .input-field input, .input-field select {
+            width: 100%;
+            padding: 0.85rem 0;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            background: transparent;
+            color: #1e2f3a;
+        }
+
+        .input-field:focus-within {
+            border-color: #ff914d;
+            box-shadow: 0 0 0 3px rgba(255, 145, 77, 0.2);
+        }
+
+        .date-picker-wrapper {
+            position: relative;
+        }
+
+        .row-2col {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .row-2col .input-group {
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(95deg, #ff914d, #ff6a2e);
+            border: none;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(255, 106, 46, 0.25);
+            margin-top: 0.8rem;
+        }
+
+        .btn-primary:hover {
+            transform: scale(0.98);
+            background: linear-gradient(95deg, #ff7a3c, #ff571f);
+            box-shadow: 0 6px 14px rgba(255, 106, 46, 0.3);
+        }
+
+        /* available buses section */
+        .buses-section {
+            margin-top: 2rem;
+            border-top: 2px dashed rgba(0,0,0,0.08);
+            padding-top: 1.8rem;
+        }
+
+        .buses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .buses-header h3 {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #0f2b38;
+        }
+
+        .badge-light {
+            background: rgba(255,145,77,0.2);
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #c4450c;
+        }
+
+        .bus-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .bus-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+            border: 1px solid #eef2f9;
+        }
+
+        .bus-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px -8px rgba(0, 0, 0, 0.12);
+            border-color: #ffddc4;
+        }
+
+        .bus-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 180px;
+        }
+
+        .bus-name {
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bus-name i {
+            color: #ff914d;
+        }
+
+        .bus-type {
+            font-size: 0.7rem;
+            background: #f2f5f9;
+            padding: 4px 12px;
+            border-radius: 30px;
+            width: fit-content;
+            font-weight: 600;
+            color: #4a6272;
+        }
+
+        .route-detail {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #375f72;
+            font-weight: 500;
+        }
+
+        .time-depart {
+            font-weight: 700;
+            color: #1b3b4c;
+        }
+
+        .price-seat {
+            text-align: right;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2c4b5e;
+            letter-spacing: -0.5px;
+        }
+
+        .price small {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .seat-count {
+            font-size: 0.75rem;
+            background: #ecfdf3;
+            padding: 4px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .book-btn {
+            background: #1e2b3c;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .book-btn:hover {
+            background: #ff914d;
+            transform: scale(1.02);
+        }
+
+        .summary-box {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 0.2rem 0;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eef0f5;
+            font-size: 0.9rem;
+        }
+
+        .summary-total {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #ff6a2e;
+            margin-top: 0.6rem;
+            padding-top: 0.4rem;
+        }
+
+        .info-message {
+            text-align: center;
+            background: #fffaec;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #a5672e;
+        }
+
+        @media (max-width: 750px) {
+            .booking-main {
+                padding: 1.5rem;
+            }
+            .bus-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .price-seat {
+                text-align: left;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        footer {
+            background: rgba(0,0,0,0.02);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6b7f8c;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e2b3c;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            backdrop-filter: blur(12px);
+            background: rgba(30,43,60,0.95);
+            pointer-events: none;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- Navbar -->
-
-<div class="navbar">
-    <div class="logo">ShopKart</div>
-    <div class="search-box">
-        <input type="text" placeholder="Search for products...">
+<div class="booking-container">
+    <div class="hero-header">
+        <div class="logo-area">
+            <div class="logo-icon">
+                <i class="fas fa-bus"></i>
+            </div>
+            <div class="logo-text">
+                <h1>GlobeGo</h1>
+                <span>luxury coach • seamless travel</span>
+            </div>
+        </div>
+        <div class="support-badge">
+            <i class="fas fa-headset"></i> 24/7 support • flexible tickets
+        </div>
     </div>
-    <div class="nav-links">
-        <a href="#">Login</a>
-        <a href="#">Cart 🛒</a>
+
+    <div class="booking-main">
+        <div class="form-grid">
+            <!-- LEFT: Booking Form -->
+            <div class="trip-form">
+                <div class="section-title">
+                    <i class="fas fa-map-marked-alt"></i> 
+                    <span>Plan your journey</span>
+                </div>
+                <div class="input-group">
+                    <label>From <i class="fas fa-city"></i></label>
+                    <div class="input-field">
+                        <i class="fas fa-bus"></i>
+                        <input type="text" id="originInput" placeholder=" e.g. New York, NY" value="Downtown Station">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>To <i class="fas fa-flag-checkered"></i></label>
+                    <div class="input-field">
+                        <i class="fas fa-location-dot"></i>
+                        <input type="text" id="destinationInput" placeholder=" Destination" value="Capital Square">
+                    </div>
+                </div>
+                <div class="row-2col">
+                    <div class="input-group">
+                        <label>Departure Date</label>
+                        <div class="input-field">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="date" id="travelDate" value="2026-05-15">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Passengers</label>
+                        <div class="input-field">
+                            <i class="fas fa-users"></i>
+                            <select id="passengerCount">
+                                <option value="1">1 passenger</option>
+                                <option value="2" selected>2 passengers</option>
+                                <option value="3">3 passengers</option>
+                                <option value="4">4 passengers</option>
+                                <option value="5">5 passengers</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-primary" id="searchBusesBtn">
+                    <i class="fas fa-search"></i> Find Available Buses
+                </button>
+            </div>
+
+            <!-- RIGHT: booking summary card -->
+            <div class="trip-summary">
+                <div class="section-title">
+                    <i class="fas fa-receipt"></i>
+                    <span>Booking summary</span>
+                </div>
+                <div class="summary-box" id="summaryBox">
+                    <div class="summary-item"><span><i class="fas fa-road"></i> Route</span><span id="summaryRoute">—</span></div>
+                    <div class="summary-item"><span><i class="fas fa-calendar-week"></i> Date</span><span id="summaryDate">—</span></div>
+                    <div class="summary-item"><span><i class="fas fa-user-friends"></i> Travelers</span><span id="summaryPax">0</span></div>
+                    <div class="summary-item"><span><i class="fas fa-bus"></i> Selected bus</span><span id="summaryBus">Not selected</span></div>
+                    <div class="summary-total" id="summaryTotalPrice">Total: $0</div>
+                </div>
+                <div class="info-message" id="bookingInfoMsg">
+                    <i class="fas fa-info-circle"></i> Search buses & pick a ride
+                </div>
+            </div>
+        </div>
+
+        <!-- AVAILABLE BUSES section (dynamic) -->
+        <div class="buses-section">
+            <div class="buses-header">
+                <h3><i class="fas fa-chair"></i> Available coaches</h3>
+                <div class="badge-light"><i class="fas fa-clock"></i> instant confirmation</div>
+            </div>
+            <div id="busListContainer" class="bus-list">
+                <!-- loading or default buses will show via javascript -->
+                <div style="text-align: center; padding: 2rem; color: #5e7c8c;"><i class="fas fa-spinner fa-pulse"></i> Enter route and click 'Find Available Buses'</div>
+            </div>
+        </div>
     </div>
+    <footer>
+        <i class="fas fa-shield-alt"></i> Secure booking • Free cancellation up to 2h before departure • Digital ticket
+    </footer>
 </div>
 
-<!-- Categories -->
+<script>
+    // ---------- Mock Bus Database ----------
+    const busFleet = [
+        { id: 101, name: "GlobeStar Express", type: "Luxury AC Sleeper", departure: "06:30 AM", arrival: "11:45 AM", duration: "5h 15m", price: 49.90, seats: 28, originKeyword: "Downtown", destKeyword: "Capital" },
+        { id: 102, name: "CityLink Cruiser", type: "Premium Semi-Sleeper", departure: "08:15 AM", arrival: "01:00 PM", duration: "4h 45m", price: 39.90, seats: 42, originKeyword: "Downtown", destKeyword: "Capital" },
+        { id: 103, name: "GreenLine Volvo", type: "Eco AC Seater", departure: "12:45 PM", arrival: "05:30 PM", duration: "4h 45m", price: 44.50, seats: 35, originKeyword: "Downtown", destKeyword: "Capital" },
+        { id: 104, name: "NightRider", type: "Luxury Sleeper", departure: "10:30 PM", arrival: "03:45 AM", duration: "5h 15m", price: 59.90, seats: 20, originKeyword: "Downtown", destKeyword: "Capital" },
+        { id: 105, name: "Metro Shuttle", type: "Standard AC", departure: "02:50 PM", arrival: "07:20 PM", duration: "4h 30m", price: 34.90, seats: 48, originKeyword: "Downtown", destKeyword: "Capital" },
+        { id: 106, name: "Royal Voyager", type: "Business Class+", departure: "07:00 AM", arrival: "11:50 AM", duration: "4h 50m", price: 69.00, seats: 18, originKeyword: "Downtown", destKeyword: "Capital" }
+    ];
 
-<div class="categories">
-    <div>Mobiles</div>
-    <div>Fashion</div>
-    <div>Electronics</div>
-    <div>Home</div>
-    <div>Appliances</div>
-    <div>Travel</div>
-</div>
+    // For dynamic search based on user input (origin/destination matching basic keywords)
+    // we return buses if origin and dest contain expected placeholders (Downtown / Capital) or fuzzy match.
+    // To make realistic: we match if originInput includes "Downtown" or similar and destination includes "Capital".
+    // But also support generic: if origin/destination any text, we show filtered buses but with route preview.
+    // We'll implement a smart filter: if origin/destination any value, we return all buses but modify route display.
+    // For demo: simply keep same bus list but show custom route text.
+    
+    let currentSelectedBus = null;
+    let currentPassengers = 2;
+    let currentOrigin = "Downtown Station";
+    let currentDestination = "Capital Square";
+    let currentDate = "2026-05-15";
+    let currentFilteredBuses = [...busFleet];
 
-<!-- Banner -->
+    // DOM elements
+    const originInput = document.getElementById('originInput');
+    const destinationInput = document.getElementById('destinationInput');
+    const travelDate = document.getElementById('travelDate');
+    const passengerSelect = document.getElementById('passengerCount');
+    const searchBtn = document.getElementById('searchBusesBtn');
+    const busListContainer = document.getElementById('busListContainer');
+    const summaryRouteSpan = document.getElementById('summaryRoute');
+    const summaryDateSpan = document.getElementById('summaryDate');
+    const summaryPaxSpan = document.getElementById('summaryPax');
+    const summaryBusSpan = document.getElementById('summaryBus');
+    const summaryTotalPriceSpan = document.getElementById('summaryTotalPrice');
+    const bookingInfoMsgDiv = document.getElementById('bookingInfoMsg');
 
-<div class="banner"></div>
+    function updateSummaryUI() {
+        const pax = parseInt(passengerSelect.value, 10);
+        currentPassengers = pax;
+        summaryPaxSpan.innerText = currentPassengers;
+        summaryDateSpan.innerText = travelDate.value ? travelDate.value : "Not set";
+        let originVal = originInput.value.trim() || "Origin";
+        let destVal = destinationInput.value.trim() || "Destination";
+        summaryRouteSpan.innerText = `${originVal} → ${destVal}`;
+        if (currentSelectedBus) {
+            summaryBusSpan.innerText = `${currentSelectedBus.name} (${currentSelectedBus.departure})`;
+            let total = (currentSelectedBus.price * currentPassengers).toFixed(2);
+            summaryTotalPriceSpan.innerHTML = `Total: $${total}`;
+            bookingInfoMsgDiv.innerHTML = `<i class="fas fa-check-circle"></i> Ready! Confirm selection? Click "Book Now" on bus card.`;
+        } else {
+            summaryBusSpan.innerText = "Not selected";
+            summaryTotalPriceSpan.innerHTML = `Total: $0`;
+            bookingInfoMsgDiv.innerHTML = `<i class="fas fa-info-circle"></i> Search buses & click "Select & Book" on a coach.`;
+        }
+    }
 
-<!-- Products -->
+    function renderBusList(buses, originName, destinationName, travelDateVal, paxCount) {
+        if (!buses.length) {
+            busListContainer.innerHTML = `<div style="background:white; border-radius:1.5rem; padding:2rem; text-align:center; color:#ae7f5a;"><i class="fas fa-bus fa-2x"></i><br/>No coaches found for this route. Try different cities!</div>`;
+            return;
+        }
+        let html = '';
+        for (let bus of buses) {
+            const totalForOne = (bus.price * paxCount).toFixed(2);
+            html += `
+                <div class="bus-card" data-bus-id="${bus.id}">
+                    <div class="bus-info">
+                        <div class="bus-name">
+                            <i class="fas fa-bus-simple"></i> ${bus.name}
+                            <span class="bus-type">${bus.type}</span>
+                        </div>
+                        <div class="route-detail">
+                            <span><i class="far fa-clock"></i> Depart: ${bus.departure}</span>
+                            <span><i class="fas fa-arrow-right"></i> Arrival: ${bus.arrival}</span>
+                            <span class="time-depart"><i class="fas fa-hourglass-half"></i> ${bus.duration}</span>
+                        </div>
+                        <div style="font-size:0.75rem; color:#547181;"><i class="fas fa-chair"></i> ${bus.seats} seats available</div>
+                    </div>
+                    <div class="price-seat">
+                        <div class="price">$${bus.price} <small>/seat</small></div>
+                        <div class="seat-count"><i class="fas fa-ticket-alt"></i> Total for ${paxCount} px: $${totalForOne}</div>
+                        <button class="book-btn select-bus" data-id="${bus.id}" data-price="${bus.price}" data-name="${bus.name}" data-departure="${bus.departure}" data-arrival="${bus.arrival}"><i class="fas fa-hand-pointer"></i> Select & Book</button>
+                    </div>
+                </div>
+            `;
+        }
+        busListContainer.innerHTML = html;
 
-<div class="products">
+        // attach event listeners to select buttons
+        document.querySelectorAll('.select-bus').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const busId = parseInt(btn.getAttribute('data-id'), 10);
+                const busPrice = parseFloat(btn.getAttribute('data-price'));
+                const busName = btn.getAttribute('data-name');
+                const busDeparture = btn.getAttribute('data-departure');
+                const foundBus = buses.find(b => b.id === busId);
+                if (foundBus) {
+                    currentSelectedBus = foundBus;
+                    updateSummaryUI();
+                    // show success message effect
+                    showToastMessage(`✨ ${busName} selected! Proceed with booking.`);
+                    bookingInfoMsgDiv.innerHTML = `<i class="fas fa-gem"></i> Bus selected! Total amount reflects ${currentPassengers} passenger(s).`;
+                } else {
+                    currentSelectedBus = { id: busId, name: busName, price: busPrice, departure: busDeparture };
+                    updateSummaryUI();
+                    showToastMessage(`✔️ ${busName} reserved, complete your booking.`);
+                }
+            });
+        });
+    }
 
-```
-<div class="product">
-    <img src="https://via.placeholder.com/150">
-    <h4>Smartphone</h4>
-    <p class="price">₹12,999</p>
-    <button>Add to Cart</button>
-</div>
+    function showToastMessage(msg) {
+        let existingToast = document.querySelector('.toast-msg');
+        if (existingToast) existingToast.remove();
+        let toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 400);
+        }, 2800);
+    }
 
-<div class="product">
-    <img src="https://via.placeholder.com/150">
-    <h4>Laptop</h4>
-    <p class="price">₹45,000</p>
-    <button>Add to Cart</button>
-</div>
+    function searchAndUpdateBuses() {
+        let origin = originInput.value.trim();
+        let destination = destinationInput.value.trim();
+        let date = travelDate.value;
+        let pax = parseInt(passengerSelect.value, 10);
+        
+        if (!origin || !destination) {
+            bookingInfoMsgDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Please enter both origin and destination!`;
+            busListContainer.innerHTML = `<div style="background:white; border-radius:1.5rem; padding:2rem; text-align:center;">⚠️ Enter cities to search buses.</div>`;
+            currentSelectedBus = null;
+            updateSummaryUI();
+            return;
+        }
+        
+        currentOrigin = origin;
+        currentDestination = destination;
+        currentDate = date;
+        currentPassengers = pax;
+        
+        // For a rich demo: filter buses based on some logic (we simulate route compatibility)
+        // Since all buses in fleet are predefined for generic downtown->capital route we show all, but enhance realism with message
+        let filtered = [...busFleet];
+        // Additional smart filter: if origin/destination contain specific terms we can keep all for demo.
+        // But we add route context message on summary
+        currentFilteredBuses = filtered;
+        renderBusList(currentFilteredBuses, origin, destination, date, pax);
+        updateSummaryUI();
+        
+        // dynamic location message
+        let routeMsg = `Showing ${filtered.length} coaches for ${origin} ➜ ${destination} on ${date}.`;
+        bookingInfoMsgDiv.innerHTML = `<i class="fas fa-bus"></i> ${routeMsg} Click "Select & Book" to confirm.`;
+        
+        // reset selected bus when new search (prevents mismatch)
+        currentSelectedBus = null;
+        updateSummaryUI();
+    }
 
-<div class="product">
-    <img src="https://via.placeholder.com/150">
-    <h4>Headphones</h4>
-    <p class="price">₹1,999</p>
-    <button>Add to Cart</button>
-</div>
+    // Additional direct booking action: finalize booking logic (button on summary not needed, but each card has select)
+    // We also add a confirmation for final booking can be triggered from summary?
+    // For better UX: add option to "Confirm Booking" after selection? we add within infoMsg maybe.
+    // Enhance: show special message when bus selected and button to complete.
+    // I'll add an extra "Complete Booking" button inside info-message after selection? but it's elegant.
+    // Let's add on summary area a "Confirm Ticket" action only when bus selected.
+    const summaryBoxDiv = document.getElementById('summaryBox');
+    let confirmBtn = document.createElement('button');
+    confirmBtn.innerText = 'Confirm & Get Ticket';
+    confirmBtn.style.background = '#ff914d';
+    confirmBtn.style.border = 'none';
+    confirmBtn.style.width = '100%';
+    confirmBtn.style.padding = '0.7rem';
+    confirmBtn.style.borderRadius = '50px';
+    confirmBtn.style.fontWeight = 'bold';
+    confirmBtn.style.marginTop = '0.9rem';
+    confirmBtn.style.cursor = 'pointer';
+    confirmBtn.style.color = 'white';
+    confirmBtn.style.fontFamily = 'Inter';
+    confirmBtn.style.fontSize = '0.85rem';
+    confirmBtn.style.display = 'none';
+    confirmBtn.id = 'confirmBookingBtn';
+    summaryBoxDiv.appendChild(confirmBtn);
 
-<div class="product">
-    <img src="https://via.placeholder.com/150">
-    <h4>Shoes</h4>
-    <p class="price">₹2,499</p>
-    <button>Add to Cart</button>
-</div>
-```
+    function updateConfirmButton() {
+        if (currentSelectedBus && currentPassengers > 0) {
+            confirmBtn.style.display = 'flex';
+            confirmBtn.style.alignItems = 'center';
+            confirmBtn.style.justifyContent = 'center';
+            confirmBtn.style.gap = '8px';
+            confirmBtn.innerHTML = `<i class="fas fa-ticket-alt"></i> Finalize Booking – $${(currentSelectedBus.price * currentPassengers).toFixed(2)}`;
+        } else {
+            confirmBtn.style.display = 'none';
+        }
+    }
 
-</div>
+    // Override update summary to also refresh confirm button
+    const originalUpdate = updateSummaryUI;
+    window.updateSummaryUI = function() {
+        originalUpdate();
+        updateConfirmButton();
+    };
+    updateSummaryUI = window.updateSummaryUI;
 
-<footer>
-    <p>© 2026 ShopKart | Inspired UI</p>
-</footer>
+    // listen for confirm booking click
+    confirmBtn.addEventListener('click', () => {
+        if (currentSelectedBus && currentOrigin && currentDestination) {
+            const totalAmount = (currentSelectedBus.price * currentPassengers).toFixed(2);
+            showToastMessage(`🎫 Booking confirmed! Ticket sent to your email. Total $${totalAmount}. Safe journey!`);
+            bookingInfoMsgDiv.innerHTML = `<i class="fas fa-check-double"></i> Booking complete! Bus: ${currentSelectedBus.name}, Passengers: ${currentPassengers}. Thank you.`;
+            // optional reset selection? keep but show confirmed
+        } else {
+            showToastMessage(`⚠️ Please select a bus first.`);
+        }
+    });
 
+    // event listeners
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        searchAndUpdateBuses();
+    });
+    passengerSelect.addEventListener('change', () => {
+        currentPassengers = parseInt(passengerSelect.value, 10);
+        if (currentFilteredBuses && currentFilteredBuses.length) {
+            renderBusList(currentFilteredBuses, currentOrigin, currentDestination, currentDate, currentPassengers);
+        }
+        updateSummaryUI();
+    });
+    travelDate.addEventListener('change', () => {
+        if (currentFilteredBuses.length) searchAndUpdateBuses();
+        else updateSummaryUI();
+    });
+    originInput.addEventListener('change', () => searchAndUpdateBuses());
+    destinationInput.addEventListener('change', () => searchAndUpdateBuses());
+
+    // initial load: populate default buses and summary date
+    (function init() {
+        const today = new Date().toISOString().split('T')[0];
+        if(!travelDate.value) travelDate.value = "2026-05-15";
+        currentDate = travelDate.value;
+        searchAndUpdateBuses();
+    })();
+</script>
 </body>
 </html>
