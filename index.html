@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+        }
+
+```
+    header {
+        background: linear-gradient(45deg, #6a11cb, #2575fc);
+        color: white;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        margin: 0;
+    }
+
+    nav a {
+        color: white;
+        margin-left: 20px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 50px 20px;
+        background: white;
+    }
+
+    .hero h2 {
+        margin-bottom: 10px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 30px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-content h3 {
+        margin: 0 0 10px;
+    }
+
+    .price {
+        color: #27ae60;
+        font-weight: bold;
+    }
+
+    .btn {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        padding: 10px;
+        background: #2575fc;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        background: #1a5edb;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: #222;
+        color: white;
+    }
+</style>
+```
+
+</head>
+<body>
+
+<header>
+    <h1>ShopEasy</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Cart</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Welcome to ShopEasy 🛒</h2>
+    <p>Your one-stop shop for amazing products!</p>
+</section>
+
+<section class="products">
+    <div class="card">
+        <img src="https://via.placeholder.com/300x200" alt="Product">
+        <div class="card-content">
+            <h3>Smart Watch</h3>
+            <p class="price">₹2,999</p>
+            <a href="#" class="btn">Buy Now</a>
+        </div>
+    </div>
+
+```
+<div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Product">
+    <div class="card-content">
+        <h3>Wireless Headphones</h3>
+        <p class="price">₹1,999</p>
+        <a href="#" class="btn">Buy Now</a>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Product">
+    <div class="card-content">
+        <h3>Shoes</h3>
+        <p class="price">₹2,499</p>
+        <a href="#" class="btn">Buy Now</a>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Product">
+    <div class="card-content">
+        <h3>Backpack</h3>
+        <p class="price">₹1,299</p>
+        <a href="#" class="btn">Buy Now</a>
+    </div>
+</div>
+```
+
+</section>
+
+<footer>
+    <p>© 2026 ShopEasy | Designed for Demo</p>
+</footer>
+
+</body>
+</html>
