@@ -2,170 +2,200 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f6fa;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopKart</title>
 
-```
-    header {
-        background: linear-gradient(45deg, #6a11cb, #2575fc);
-        color: white;
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f3f6;
+}
 
-    header h1 {
-        margin: 0;
-    }
+/* Navbar */
+.navbar {
+    background: #2874f0;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
 
-    nav a {
-        color: white;
-        margin-left: 20px;
-        text-decoration: none;
-        font-weight: bold;
-    }
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
 
-    .hero {
-        text-align: center;
-        padding: 50px 20px;
-        background: white;
-    }
+.search-box {
+    flex: 1;
+    margin: 0 20px;
+}
 
-    .hero h2 {
-        margin-bottom: 10px;
-    }
+.search-box input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+}
 
-    .products {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        padding: 30px;
-    }
+.nav-links a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
 
-    .card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: transform 0.2s;
-    }
+/* Categories */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 10px;
+}
 
-    .card:hover {
-        transform: scale(1.05);
-    }
+.categories div {
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+}
 
-    .card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-    }
+/* Banner */
+.banner {
+    width: 100%;
+    height: 250px;
+    background: url('https://via.placeholder.com/1200x250') no-repeat center/cover;
+    margin-bottom: 20px;
+}
 
-    .card-content {
-        padding: 15px;
-    }
+/* Products */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
 
-    .card-content h3 {
-        margin: 0 0 10px;
-    }
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
 
-    .price {
-        color: #27ae60;
-        font-weight: bold;
-    }
+.product:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}
 
-    .btn {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-        padding: 10px;
-        background: #2575fc;
-        color: white;
-        border-radius: 8px;
-        text-decoration: none;
-    }
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+}
 
-    .btn:hover {
-        background: #1a5edb;
-    }
+.product h4 {
+    margin: 10px 0;
+}
 
-    footer {
-        text-align: center;
-        padding: 15px;
-        background: #222;
-        color: white;
-    }
+.price {
+    color: green;
+    font-weight: bold;
+}
+
+button {
+    background: #fb641b;
+    border: none;
+    padding: 8px;
+    color: white;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e55b16;
+}
+
+/* Footer */
+footer {
+    background: #172337;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
 </style>
-```
 
 </head>
+
 <body>
 
-<header>
-    <h1>ShopEasy</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">Cart</a>
-        <a href="#">Contact</a>
-    </nav>
-</header>
+<!-- Navbar -->
 
-<section class="hero">
-    <h2>Welcome to ShopEasy 🛒</h2>
-    <p>Your one-stop shop for amazing products!</p>
-</section>
-
-<section class="products">
-    <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Product">
-        <div class="card-content">
-            <h3>Smart Watch</h3>
-            <p class="price">₹2,999</p>
-            <a href="#" class="btn">Buy Now</a>
-        </div>
+<div class="navbar">
+    <div class="logo">ShopKart</div>
+    <div class="search-box">
+        <input type="text" placeholder="Search for products...">
     </div>
+    <div class="nav-links">
+        <a href="#">Login</a>
+        <a href="#">Cart 🛒</a>
+    </div>
+</div>
+
+<!-- Categories -->
+
+<div class="categories">
+    <div>Mobiles</div>
+    <div>Fashion</div>
+    <div>Electronics</div>
+    <div>Home</div>
+    <div>Appliances</div>
+    <div>Travel</div>
+</div>
+
+<!-- Banner -->
+
+<div class="banner"></div>
+
+<!-- Products -->
+
+<div class="products">
 
 ```
-<div class="card">
-    <img src="https://via.placeholder.com/300x200" alt="Product">
-    <div class="card-content">
-        <h3>Wireless Headphones</h3>
-        <p class="price">₹1,999</p>
-        <a href="#" class="btn">Buy Now</a>
-    </div>
+<div class="product">
+    <img src="https://via.placeholder.com/150">
+    <h4>Smartphone</h4>
+    <p class="price">₹12,999</p>
+    <button>Add to Cart</button>
 </div>
 
-<div class="card">
-    <img src="https://via.placeholder.com/300x200" alt="Product">
-    <div class="card-content">
-        <h3>Shoes</h3>
-        <p class="price">₹2,499</p>
-        <a href="#" class="btn">Buy Now</a>
-    </div>
+<div class="product">
+    <img src="https://via.placeholder.com/150">
+    <h4>Laptop</h4>
+    <p class="price">₹45,000</p>
+    <button>Add to Cart</button>
 </div>
 
-<div class="card">
-    <img src="https://via.placeholder.com/300x200" alt="Product">
-    <div class="card-content">
-        <h3>Backpack</h3>
-        <p class="price">₹1,299</p>
-        <a href="#" class="btn">Buy Now</a>
-    </div>
+<div class="product">
+    <img src="https://via.placeholder.com/150">
+    <h4>Headphones</h4>
+    <p class="price">₹1,999</p>
+    <button>Add to Cart</button>
+</div>
+
+<div class="product">
+    <img src="https://via.placeholder.com/150">
+    <h4>Shoes</h4>
+    <p class="price">₹2,499</p>
+    <button>Add to Cart</button>
 </div>
 ```
 
-</section>
+</div>
 
 <footer>
-    <p>© 2026 ShopEasy | Designed for Demo</p>
+    <p>© 2026 ShopKart | Inspired UI</p>
 </footer>
 
 </body>
