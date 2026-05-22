@@ -1,172 +1,258 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEasy</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f6fa;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Banking Services</title>
 
-```
-    header {
-        background: linear-gradient(45deg, #6a11cb, #2575fc);
-        color: white;
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
     }
 
-    header h1 {
-        margin: 0;
+    body{
+      background:#f4f7fb;
+      color:#333;
     }
 
-    nav a {
-        color: white;
-        margin-left: 20px;
-        text-decoration: none;
-        font-weight: bold;
+    header{
+      background:#0b4da2;
+      color:white;
+      padding:20px;
+      text-align:center;
     }
 
-    .hero {
-        text-align: center;
-        padding: 50px 20px;
-        background: white;
+    nav{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      background:#083b7a;
+      padding:12px;
+      flex-wrap:wrap;
     }
 
-    .hero h2 {
-        margin-bottom: 10px;
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
     }
 
-    .products {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        padding: 30px;
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:30px auto;
     }
 
-    .card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: transform 0.2s;
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
     }
 
-    .card:hover {
-        transform: scale(1.05);
+    .card{
+      background:white;
+      border-radius:12px;
+      padding:25px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition:0.3s;
     }
 
-    .card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
+    .card:hover{
+      transform:translateY(-5px);
     }
 
-    .card-content {
-        padding: 15px;
+    .card h2{
+      margin-bottom:15px;
+      color:#0b4da2;
     }
 
-    .card-content h3 {
-        margin: 0 0 10px;
+    .card p{
+      margin-bottom:20px;
+      line-height:1.5;
     }
 
-    .price {
-        color: #27ae60;
-        font-weight: bold;
+    .card button{
+      background:#0b4da2;
+      color:white;
+      border:none;
+      padding:12px 18px;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:16px;
     }
 
-    .btn {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-        padding: 10px;
-        background: #2575fc;
-        color: white;
-        border-radius: 8px;
-        text-decoration: none;
+    .card button:hover{
+      background:#062f63;
     }
 
-    .btn:hover {
-        background: #1a5edb;
+    footer{
+      background:#0b4da2;
+      color:white;
+      text-align:center;
+      padding:15px;
+      margin-top:40px;
     }
 
-    footer {
-        text-align: center;
-        padding: 15px;
-        background: #222;
-        color: white;
+    .form-popup{
+      display:none;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      background:white;
+      width:320px;
+      padding:25px;
+      border-radius:10px;
+      box-shadow:0 0 15px rgba(0,0,0,0.3);
+      z-index:1000;
     }
-</style>
-```
 
+    .form-popup h3{
+      margin-bottom:15px;
+      color:#0b4da2;
+    }
+
+    .form-popup input,
+    .form-popup select{
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+      border:1px solid #ccc;
+      border-radius:5px;
+    }
+
+    .form-popup button{
+      width:100%;
+      margin-top:10px;
+    }
+
+    .overlay{
+      display:none;
+      position:fixed;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.5);
+      top:0;
+      left:0;
+      z-index:999;
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-    <h1>ShopEasy</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">Cart</a>
-        <a href="#">Contact</a>
-    </nav>
+  <h1>Smart Banking Services</h1>
+  <p>Recharge • Bus Booking • Movie Tickets</p>
 </header>
 
-<section class="hero">
-    <h2>Welcome to ShopEasy 🛒</h2>
-    <p>Your one-stop shop for amazing products!</p>
-</section>
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Banking</a>
+  <a href="#">Recharge</a>
+  <a href="#">Bus Booking</a>
+  <a href="#">Movies</a>
+  <a href="#">Contact</a>
+</nav>
 
-<section class="products">
+<div class="container">
+
+  <div class="services">
+
+    <!-- Recharge -->
     <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Product">
-        <div class="card-content">
-            <h3>Smart Watch</h3>
-            <p class="price">₹2,999</p>
-            <a href="#" class="btn">Buy Now</a>
-        </div>
+      <h2>Mobile Recharge</h2>
+      <p>Recharge prepaid and postpaid mobile numbers instantly with secure payment.</p>
+      <button onclick="openForm('rechargeForm')">Recharge Now</button>
     </div>
 
-```
-<div class="card">
-    <img src="https://via.placeholder.com/300x200" alt="Product">
-    <div class="card-content">
-        <h3>Wireless Headphones</h3>
-        <p class="price">₹1,999</p>
-        <a href="#" class="btn">Buy Now</a>
+    <!-- Bus Booking -->
+    <div class="card">
+      <h2>Bus Booking</h2>
+      <p>Book bus tickets across cities with seat selection and instant confirmation.</p>
+      <button onclick="openForm('busForm')">Book Bus</button>
     </div>
+
+    <!-- Movie Tickets -->
+    <div class="card">
+      <h2>Movie Tickets</h2>
+      <p>Reserve movie tickets online for your favorite theaters and shows.</p>
+      <button onclick="openForm('movieForm')">Book Tickets</button>
+    </div>
+
+  </div>
+
 </div>
 
-<div class="card">
-    <img src="https://via.placeholder.com/300x200" alt="Product">
-    <div class="card-content">
-        <h3>Shoes</h3>
-        <p class="price">₹2,499</p>
-        <a href="#" class="btn">Buy Now</a>
-    </div>
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="closeForms()"></div>
+
+<!-- Recharge Form -->
+<div class="form-popup" id="rechargeForm">
+  <h3>Mobile Recharge</h3>
+  <input type="text" placeholder="Mobile Number">
+  <input type="number" placeholder="Amount">
+  <select>
+    <option>Select Operator</option>
+    <option>Jio</option>
+    <option>Airtel</option>
+    <option>VI</option>
+    <option>BSNL</option>
+  </select>
+  <button onclick="submitMessage('Recharge Successful!')">Proceed</button>
 </div>
 
-<div class="card">
-    <img src="https://via.placeholder.com/300x200" alt="Product">
-    <div class="card-content">
-        <h3>Backpack</h3>
-        <p class="price">₹1,299</p>
-        <a href="#" class="btn">Buy Now</a>
-    </div>
+<!-- Bus Booking Form -->
+<div class="form-popup" id="busForm">
+  <h3>Bus Booking</h3>
+  <input type="text" placeholder="From">
+  <input type="text" placeholder="To">
+  <input type="date">
+  <button onclick="submitMessage('Bus Ticket Booked!')">Book Now</button>
 </div>
-```
 
-</section>
+<!-- Movie Booking Form -->
+<div class="form-popup" id="movieForm">
+  <h3>Movie Tickets</h3>
+  <input type="text" placeholder="Movie Name">
+  <input type="date">
+  <select>
+    <option>Select Time</option>
+    <option>10:00 AM</option>
+    <option>1:00 PM</option>
+    <option>4:00 PM</option>
+    <option>7:00 PM</option>
+  </select>
+  <button onclick="submitMessage('Movie Ticket Confirmed!')">Book Ticket</button>
+</div>
 
 <footer>
-    <p>© 2026 ShopEasy | Designed for Demo</p>
+  <p>© 2026 Smart Banking Services. All Rights Reserved.</p>
 </footer>
+
+<script>
+  function openForm(formId){
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById(formId).style.display = "block";
+  }
+
+  function closeForms(){
+    document.getElementById("overlay").style.display = "none";
+
+    const forms = document.querySelectorAll(".form-popup");
+    forms.forEach(form => {
+      form.style.display = "none";
+    });
+  }
+
+  function submitMessage(message){
+    alert(message);
+    closeForms();
+  }
+</script>
 
 </body>
 </html>
